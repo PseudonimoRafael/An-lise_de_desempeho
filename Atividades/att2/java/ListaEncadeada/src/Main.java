@@ -8,9 +8,9 @@ public class Main {
         chain.push(15);
         chain.push(14);
         chain.push(13);
-        chain.imprimeLista();
+        chain.print();
         // System.out.println(chain.pop(11));
         chain.remove(11);
-        chain.imprimeLista();
+        chain.print();
     }
 }

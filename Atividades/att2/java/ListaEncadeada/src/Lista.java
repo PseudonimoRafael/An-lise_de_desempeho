@@ -15,7 +15,7 @@ public class Lista {
         Cabeca = new Elemento(anterior, valor);
     }
 
-    public void imprimeLista() {
+    public void print() {
         recLista(Cabeca);
     }
     private void recLista(Elemento proximo) {
