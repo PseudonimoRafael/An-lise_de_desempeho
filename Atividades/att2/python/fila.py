@@ -22,13 +22,32 @@ class fila:
         self.elemento = topo.elemento
         return topo.valor
     
+    def remove(self, valor):
+        anterior = self.elemento
+        defasado = anterior ## apenas criando a variável
+        if anterior.valor == valor:
+            self.elemento = anterior.elemento
+            return anterior.valor
+        
+        while anterior.elemento != None:
+            defasado = anterior.elemento
+            if defasado.valor == valor:
+                anterior.elemento = defasado.elemento
+                return anterior.valor
+            
+            anterior = anterior.elemento
+        
+        return 0
+    
+
 chain = fila()
-chain.push(1)
-chain.push(2)
-chain.push(3)
+
+for n in range(12):
+    chain.push(n)
 
 chain.print()
 
 chain.pop()
+chain.remove(2)
 
 chain.print()

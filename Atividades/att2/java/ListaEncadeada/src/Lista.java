@@ -1,19 +1,3 @@
-    /*
-    public int achar(int valor) {
-        return recAchar(valor, Cabeca);
-    }
-    private int recAchar(int valor, Elemento el) {
-        if (el.Valor == valor){
-            return valor;
-        } else if (el.Proximo == null) {
-            return 0;
-        } else {
-            return recAchar(valor, el.Proximo);
-        }
-    }
-    */
-
-
 public class Lista {
     public Elemento Cabeca = null;
 
@@ -59,5 +43,11 @@ public class Lista {
                     }
                 anterior = anterior.Proximo;
             } return 0;
+        }
+
+        public int pop() {
+            Elemento topo = Cabeca;
+            Cabeca = topo.Proximo;
+            return topo.Valor;
         }
 }
