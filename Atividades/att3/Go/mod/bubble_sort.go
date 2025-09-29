@@ -5,16 +5,19 @@ func Bubble_sort(lista []int) []int {
 	array := lista
 	tr := 0
 	tam := len(lista)
-
+	var swap bool
 	for i := 0; i < tam; i++ {
-		for j := 1; j < tam; j++ {
-
-			if array[j] < array[j-1] {
+		swap = false
+		for j := 0; j < tam-1; j++ {
+			if array[j+1] < array[j] {
 				tr = array[j]
-				array[j] = array[j-1]
-				array[j-1] = tr
+				array[j] = array[j+1]
+				array[j+1] = tr
+				swap = true
 			}
-
+		}
+		if !swap {
+			break
 		}
 	}
 	return array

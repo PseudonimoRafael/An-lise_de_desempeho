@@ -5,17 +5,8 @@ def merge(a, b):
 
     res_list = list()
 
-    while index1 < lena or index2 < lenb:
-        
-        if index1 == lena:
-            res_list.append(b[index2])
-            index2 += 1
-        
-        elif index2 == lenb:
-            res_list.append(a[index1])
-            index1 += 1
-            
-        elif a[index1] < b[index2]:
+    while index1 < lena and index2 < lenb:
+        if a[index1] < b[index2]:
             res_list.append(a[index1])
             index1 += 1
         
@@ -23,6 +14,14 @@ def merge(a, b):
         # elif a[index1] >= b[index2]:
             res_list.append(b[index2])
             index2 += 1
+    
+    while index1 < lena:
+        res_list.append(a[index1])
+        index1 += 1
+
+    while index2 < lenb:
+        res_list.append(b[index2])
+        index2 += 1
     
     return res_list
 

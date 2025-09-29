@@ -17,20 +17,22 @@ func merge(a, b []int) []int {
 	lenb := len(b)
 	res_list := make([]int, 0, lena+lenb)
 	i, j := 0, 0
-	for i < lena || j < lenb {
-		if i == lena {
-			res_list = append(res_list, b[j])
-			j++
-		} else if j == lenb {
-			res_list = append(res_list, a[i])
-			i++
-		} else if a[i] < b[j] {
+	for i < lena && j < lenb {
+		if a[i] < b[j] {
 			res_list = append(res_list, a[i])
 			i++
 		} else {
 			res_list = append(res_list, b[j])
 			j++
 		}
+	}
+	for i < lena {
+		res_list = append(res_list, a[i])
+		i++
+	}
+	for j < lenb {
+		res_list = append(res_list, b[j])
+		j++
 	}
 	return res_list
 }
