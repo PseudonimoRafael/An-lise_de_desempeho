@@ -28,22 +28,16 @@ def merge(a, b):
 
 def half(n): return int(n / 2)
 
-def merge_sort_rec(a, b):
+def merge_sort(lista):
+    l = len(lista)
     ## uma implementação recursiva do merge_sort
-    if len(a) > 1 and len(b) > 1:
-        halfa = half(len(a))
-        halfb = half(len(b))
+    if l > 1:
+        l2 = half(l)
 
         # particionando
-        a1 = a[0: halfa]
-        a2 = a[halfa: len(a)]
+        a1 = merge_sort(lista[0: l2])
+        a2 = merge_sort(lista[l2: l])
 
-        b1 = b[0: halfb]
-        b2 = b[halfb: len(b)]
-
-        lista1 = merge_sort_rec(a1, a2)
-        lista2 = merge_sort_rec(b1, b2)
-
-        return merge(lista1, lista2)
+        return merge(a1, a2)
     
-    return merge(a, b)
+    return lista
