@@ -14,19 +14,42 @@ package sorters;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Scanner;
 
 public class Sorters {
 
     public static void main(String[] args) {
         int[] lista_a_ser_ordenada = readFile("../../../arq.txt");
-        
+        Instant inicio, fim;
+        Runtime runtime = Runtime.getRuntime();
+        float mem0, mem;
+
+        System.gc(); // passa o Garbage Collector
+
+        // medindo bubble
+        mem0 = runtime.totalMemory() - runtime.freeMemory();
+        inicio = Instant.now();
         int[] BB = bubble_Sort(lista_a_ser_ordenada);
+        fim = Instant.now();
+        mem = runtime.totalMemory() - runtime.freeMemory();
+        Duration tempoBubble = Duration.between(inicio, fim);
+        System.out.println("Tempo em Sec: " + tempoBubble.toSeconds());
+        System.out.printf("Memória utilizada [MB]: %f\n", (mem - mem0) / 1024); 
+
+        System.gc();
+
+        // medidno merge
+        inicio = Instant.now();
+        mem0 = runtime.totalMemory() - runtime.freeMemory();
         int[] MS = merge_sort(lista_a_ser_ordenada);
-        
-        System.out.println(Arrays.toString(BB));
-        System.out.println(Arrays.toString(MS));
+        fim = Instant.now();
+        mem = runtime.totalMemory() - runtime.freeMemory();
+        Duration tempoMerge = Duration.between(inicio, fim);
+        System.out.println("Tempo em Milisec: " + tempoMerge.toMillis());
+        System.out.printf("Memória utilizada [MB]: %f\n", (mem - mem0) / 1024);
+
     }
 
     public static int[] bubble_Sort(int[] lista)
