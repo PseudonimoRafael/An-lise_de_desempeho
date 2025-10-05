@@ -1,11 +1,26 @@
+/*
+Apesar de poder separar em vários arquívos quero algo mais proximo do paradigma imperativo...
+Desculpa pessoas...
+
+Três quatro aqui: 
+bubble_sort
+merge_sort
+merge
+readFile
+
+*/
+
 package sorters;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Sorters {
 
     public static void main(String[] args) {
-        int[] lista_a_ser_ordenada = {3,1,4,1,5,9,2,6,5,3,5}; 
+        int[] lista_a_ser_ordenada = readFile("../../../arq.txt");
         
         int[] BB = bubble_Sort(lista_a_ser_ordenada);
         int[] MS = merge_sort(lista_a_ser_ordenada);
@@ -102,5 +117,18 @@ public class Sorters {
         }
         return orded;
     }
-
+    public static int[] readFile(String path) {
+        File arq = new File(path);
+        int[] lista = new int[1024*1024];
+        int len = 0; 
+        try (Scanner Dados = new Scanner(arq)){
+            while (Dados.hasNext()){
+                lista[len] = Dados.nextInt();
+                len++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return lista;
+        }
 }
