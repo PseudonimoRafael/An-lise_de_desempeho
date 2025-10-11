@@ -3,7 +3,7 @@ class Elemento:
         self.elemento = elemento
         self.valor = valor
 
-class fila:
+class Linked_List:
     def __init__(self):
         self.elemento = Elemento(0, None)
 
@@ -38,16 +38,26 @@ class fila:
             anterior = anterior.elemento
         
         return 0
+
     
+class Lista(Linked_List):
+    def __init__(self):
+        super().__init__()
 
-chain = fila()
+    def execute(self, string):
+        comando = string.split(" ")
+        comando[-1] = comando[-1][0:-1]
+        
+        # print(comando)
+        if comando[0] == 'P':
+            self.print()
+        elif comando[0] == 'A':
+            self.push(comando[1])
+        elif comando[0] == 'R':
+            self.remove(comando[1])
 
-for n in range(12):
-    chain.push(n)
-
-chain.print()
-
-chain.pop()
-chain.remove(2)
-
-chain.print()
+    def generate_from_list(self, lista):
+        for V in lista:
+            self.push(
+                int(V)
+                )
