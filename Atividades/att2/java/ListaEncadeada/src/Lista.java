@@ -50,4 +50,21 @@ public class Lista {
             Cabeca = topo.Proximo;
             return topo.Valor;
         }
+
+        public void adiciona(int pos, int valor) {
+            Elemento ant = Cabeca;
+            Elemento prox = ant.Proximo;
+            if (pos == 0) {
+                Cabeca = new Elemento(Cabeca, valor);
+            }
+            
+            for (int i = 0; i < pos - 1; i++) {
+            ant = ant.Proximo;
+            prox = prox.Proximo;
+            }
+
+            Elemento novoElemento = new Elemento(prox, valor);
+            ant.Proximo = novoElemento;
+        }
+
 }
