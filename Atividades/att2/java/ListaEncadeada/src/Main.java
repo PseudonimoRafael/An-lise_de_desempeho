@@ -6,6 +6,8 @@ public class Main {
     
     public static void main(String[] args)
     {
+        Metrica med = new Metrica();
+        
         // abrindo arquivo para leitura
         String[] cont = readFile("../../../arq-novo.txt");
         ListaOperavel chain = new ListaOperavel();
@@ -16,6 +18,7 @@ public class Main {
         int tam = Integer.parseInt(cont[1]);
         int casting;
 
+        med.start();
         // obs: o for tem que ser invertido para a lista ser indexada na ordem correta.
         for (int i = tam_inic -1; i > -1; i--) {
             casting = Integer.parseInt(numeros[i]);
@@ -25,6 +28,9 @@ public class Main {
         for (int com = 0; com < tam; com++) {
             chain.executaComando(cont[com + 2]);
         }
+        med.stop();
+
+        System.out.println(med.show());
     }
 
 
