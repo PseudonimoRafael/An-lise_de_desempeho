@@ -1,0 +1,46 @@
+# /caminho/do/seu/projeto/docker-compose.yml
+
+version: '3.8'
+
+services:
+  # --- Serviço Nginx Load Balancer ---
+  nginx_lb:
+    build:
+      context: . # Usa o Dockerfile no diretório atual
+      dockerfile: Dockerfile
+    container_name: nginx_load_balancer
+    # Mapeia a porta de entrada (Host:3000) para a porta interna do Nginx (Container:80)
+    ports:
+      - "3000:80"
+    # Garante que ele só inicie após os backends estarem prontos (boa prática)
+    depends_on:
+      - backend_a
+      - backend_b
+    networks:
+      - app_network
+
+  # --- Serviço Backend A (Porta 5000) ---
+  backend_a:
+    build:
+      context: ../app1/
+      dockerfile: Dockerfile
+    container_name: app1
+
+    networks:
+      - app_network
+
+  # --- Serviço Backend B (Porta 8000) ---
+  backend_b:
+    build:
+      context: ../app2/
+      dockerfile: Dockerfile 
+    container_name: app2
+
+    networks:
+      - app_network
+
+# --- Rede Personalizada ---
+# Não pergunte o que isso faz.
+networks:
+  app_network:
+    driver: bridge
