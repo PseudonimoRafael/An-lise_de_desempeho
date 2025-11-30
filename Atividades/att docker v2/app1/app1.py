@@ -2,10 +2,11 @@
 App 1: apenas retorna o nome do container
 """
 
-import Falsk
+from flask import Flask
 
-app = Falsk(__name__)
+app = Flask(__name__)
 
+@app.route("/")
 def hello():
     return """Hello from Conainer1\nmarty?"""
 
